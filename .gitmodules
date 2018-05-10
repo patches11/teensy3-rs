@@ -7,3 +7,6 @@
 [submodule "teensy3-sys/Wire"]
 	path = teensy3-sys/Wire
 	url = https://github.com/PaulStoffregen/Wire
+[submodule "teensy3-sys/OctoWS2811"]
+	path = teensy3-sys/OctoWS2811
+	url = https://github.com/PaulStoffregen/OctoWS2811.git

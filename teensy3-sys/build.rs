@@ -129,7 +129,7 @@ fn main() {
     // TODO: Assert `teensy3-sys.ld` exists
     // TODO: Assert `eabi` and `eabihf` targets make sense wrt other flag settings
 
-    let source_dirs = ["cores/teensy3", "SPI", "Wire"];
+    let source_dirs = ["cores/teensy3", "SPI", "Wire", "OctoWS2811"];
 
     let c_compiler = "arm-none-eabi-gcc";
     let cpp_compiler = "arm-none-eabi-g++";
