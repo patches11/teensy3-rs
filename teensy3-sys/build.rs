@@ -194,9 +194,13 @@ fn main() {
         .write_all(wprogram_h.replace("int32_t random(void);", "long random(void);").as_bytes())
         .expect("failed to write to program header");
 
-    bindgen::Builder::default()
-        .no_unstable_rust()
+    let bindings = bindgen::Builder::default()
         .use_core()
+        .blacklist_type("FP_NAN")
+        .blacklist_type("FP_INFINITE")
+        .blacklist_type("FP_ZERO")
+        .blacklist_type("FP_SUBNORMAL")
+        .blacklist_type("FP_NORMAL")
         .generate_inline_functions(true)
         .header("bindings.h")
         .ctypes_prefix("c_types")
@@ -211,7 +215,11 @@ fn main() {
         .clang_arg(env::var("TARGET").expect("Why isn't Target set?"))
         .generate()
         .expect("error when generating bindings")
-        .write_to_file(out_dir.join("bindings.rs"))
+        .to_string();
+
+    File::create(out_dir.join("bindings.rs"))
+        .expect("Failed to create bindings file")
+        .write_all(bindings.replace("Ej", "Em").as_bytes()) // TODO Remove ~This~ Hack, or at least make it better. This is here because the generated bindings don't seem to match the compiled .o files manged names
         .expect("error when writing bindings");
 
 }

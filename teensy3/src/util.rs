@@ -54,3 +54,16 @@ pub fn pin_mode(pin: u8, mode: PinMode) {
                           } as u8);
     }
 }
+
+pub fn micros() -> u32 {
+    unsafe {
+        bindings::micros()
+    }
+}
+
+// TODO Implement using probably systick_millis_count
+pub fn millis() -> u32 {
+    unsafe {
+        bindings::micros() / 1000
+    }
+}

@@ -19,4 +19,4 @@ teensy_3_5 = []
 teensy_3_6 = []
 
 [build-dependencies]
-bindgen = "0.23.1"
+bindgen = "0.36.1"

@@ -15,6 +15,7 @@ pub extern crate teensy3_sys as bindings;
 pub mod serial;
 pub mod spi;
 pub mod util;
+pub mod octows2811;
 
 /// Processor panic
 #[lang = "panic_fmt"]

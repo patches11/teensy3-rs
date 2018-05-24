@@ -35,8 +35,41 @@ This code is nearly entirely thanks to these resources:
 * [Simon's teensy3-clock repo](https://github.com/SimonSapin/teensy-clock) for the rust main, build scripts, bindgen knowledge, et. al.
 * [rust-bindgen](https://github.com/servo/rust-bindgen)
 
+## Basic Build Instructions for projects which rely on this [like this demo](https://github.com/jamesmunns/teensy3-rs-demo)
+
+### Debian 9
+
+`apt-get install llvm-3.9-dev libclang-3.9-dev clang-3.9 libc6-dev-i386`
+
+`apt-get install gcc-arm-none-eabi`
+
+`curl https://sh.rustup.rs -sSf | sh`
+
+`rustup default nightly`
+
+`rustup component add rust-src`
+
+`cargo install xargo`
+
+`xargo clean`
+
+# Ubuntu 17
+
+`apt install clang llvm-dev libclang-dev libc6-dev-i386 gcc-arm-none-eabi`
+
+### Teensy 3.6
+
+`xargo build --release --target thumbv7em-none-eabihf`
+
+`arm-none-eabi-objcopy -O ihex -R .eeprom target/thumbv7em-none-eabihf/release/teensy3-rs-demo target/hex`
+
+`teensy_loader_cli -w -s --mcu=mk66fx1m0 target/hex`
+
 ## License
 
 Rust contributions are licensed under the MIT License.
 
 **Please Note:** ASM, C, C++, and Linker Components of the `teensy3-sys` crate (a dependency of the `teensy3` crate) contain components licensed under the MIT License, PJRC's modified MIT License, and the LGPL v2.1. Please refer to individual components for more details.
+
+
+
